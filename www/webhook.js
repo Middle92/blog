@@ -2,6 +2,7 @@
 // test test test
 const http = require('http')
 const createHandler = require('github-webhook-handler')
+console.log(123)
 const handler = createHandler({ path: '/home/blog', secret: 'root'})
 
 function run_cmd(cmd, args, callback) {
