@@ -32,6 +32,7 @@ http.createServer((req, res) => {
 handler.on('error', (err) => {
   console.log('输出错误信息', err.message)
 })
+
 // GitHub的push事件监听
 handler.on('push', (event) => {
   console.log('github的push事件 %s to %s', event.payload.repository.name, event.payload.ref)
