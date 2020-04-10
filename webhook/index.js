@@ -38,7 +38,7 @@ handler.on('error', (err) => {
 handler.on('push', (event) => {
   console.log('github的push事件 %s to %s', event.payload.repository.name, event.payload.ref)
   // 执行cmd
-  run_cmd('sh', ['./index.sh', event.payload.repository.name], (text) => { 
+  run_cmd('sh', ['./webhook.sh', event.payload.repository.name], (text) => { 
     console.log('callback', text) 
   });
 })
