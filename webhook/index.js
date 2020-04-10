@@ -1,6 +1,6 @@
 /* eslint-disable */
 const http = require('http') // 启动服务
-const createHandler = require('github-webpack-handler') // github 钩子插件
+const createHandler = require('github-webhook-handler') // github 钩子插件
 const handler = createHandler({ path: '/', secret: 'root'}) // 配置钩子插件
 
 // 执行命令行函数
