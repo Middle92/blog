@@ -1,3 +1,4 @@
+echo 'hello world'
 cd /home/blog
 git pull
 npm install
