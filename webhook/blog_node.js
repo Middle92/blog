@@ -5,13 +5,11 @@ const handler = createHandler({ path: '/', secret: 'root'}) // 配置钩子插�
 
 // 执行命令行函数
 function run_cmd(cmd, args, callback) {
-  console.log('run_cmd', cmd, args, callback)
   let spawn = require('child_process').spawn // 创建异步进程
   let child = spawn(cmd, args) // 传入 命令行代码 执行
   let resp = ''
   child.stdout.on('data', (buffer) => {
     resp += buffer.toString()
-    console.log('data', resp)
   })
 
   child.stdout.on('end', () => {
@@ -38,7 +36,7 @@ handler.on('error', (err) => {
 handler.on('push', (event) => {
   console.log('github的push事件 %s to %s', event.payload.repository.name, event.payload.ref)
   // 执行cmd
-  run_cmd('sh', ['/home/blog/webhook/webhook.sh', event.payload.repository.name], (text) => { 
-    console.log('callback', text) 
+  run_cmd('sh', ['/home/blog/webhook/blog_cmd.sh', event.payload.repository.name], (resp) => { 
+    console.log('callback', resp) 
   });
 })
