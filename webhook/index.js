@@ -9,7 +9,6 @@ function run_cmd(cmd, args, callback) {
   let spawn = require('child_process').spawn // 创建异步进程
   let child = spawn(cmd, args) // 传入 命令行代码 执行
   let resp = ''
-  console.log('child', child)
   child.stdout.on('data', (buffer) => {
     resp += buffer.toString()
     console.log('data', resp)
@@ -39,7 +38,7 @@ handler.on('error', (err) => {
 handler.on('push', (event) => {
   console.log('github的push事件 %s to %s', event.payload.repository.name, event.payload.ref)
   // 执行cmd
-  run_cmd('sh', ['./webhook.sh', event.payload.repository.name], (text) => { 
+  run_cmd('sh', ['/home/blog/webhook/webhook.sh', event.payload.repository.name], (text) => { 
     console.log('callback', text) 
   });
 })
