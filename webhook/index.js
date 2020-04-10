@@ -5,17 +5,18 @@ const handler = createHandler({ path: '/', secret: 'root'}) // 配置钩子插�
 
 // 执行命令行函数
 function run_cmd(cmd, args, callback) {
+  console.log('run_cmd', cmd, args, callback)
   let spawn = require('child_process').spawn // 创建异步进程
   let child = spawn(cmd, args) // 传入 命令行代码 执行
   let resp = ''
-
+  console.log('child', child)
   child.stdout.on('data', (buffer) => {
     resp += buffer.toString()
-    console.log(resp)
+    console.log('data', resp)
   })
 
   child.stdout.on('end', () => {
-    callback(resp)
+    callback('end', resp)
   })
 }
 
